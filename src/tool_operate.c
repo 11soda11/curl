@@ -1203,12 +1203,13 @@ static void check_stdin_upload(struct OperationConfig *config,
     }
     else
       per->infd = (int)f;
-#endif
+#else
     if(curlx_nonblock((curl_socket_t)per->infd, TRUE) < 0) {
       char errbuf[STRERROR_LEN];
       warnf("fcntl failed on fd=%d: %s", per->infd,
             curlx_strerror(errno, errbuf, sizeof(errbuf)));
     }
+#endif
   }
 }
 
